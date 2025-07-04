@@ -2,6 +2,7 @@ package space.springbok.springaiintro.services;
 
 import space.springbok.springaiintro.model.Answer;
 import space.springbok.springaiintro.model.GetCapitalRequest;
+import space.springbok.springaiintro.model.GetCapitalResponse;
 import space.springbok.springaiintro.model.Question;
 
 /**
@@ -13,7 +14,7 @@ public interface OpenAIService {
 
     Answer getAnswer(Question question);
 
-    Answer getCapital(GetCapitalRequest getCapitalRequest);
+    GetCapitalResponse getCapital(GetCapitalRequest getCapitalRequest);
 
     Answer getCapitalWithInfo(GetCapitalRequest getCapitalRequest);
 }
