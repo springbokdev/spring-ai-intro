@@ -1,9 +1,6 @@
 package space.springbok.springaiintro.services;
 
-import space.springbok.springaiintro.model.Answer;
-import space.springbok.springaiintro.model.GetCapitalRequest;
-import space.springbok.springaiintro.model.GetCapitalResponse;
-import space.springbok.springaiintro.model.Question;
+import space.springbok.springaiintro.model.*;
 
 /**
  * @author John Spangenberg
@@ -16,5 +13,5 @@ public interface OpenAIService {
 
     GetCapitalResponse getCapital(GetCapitalRequest getCapitalRequest);
 
-    Answer getCapitalWithInfo(GetCapitalRequest getCapitalRequest);
+    GetCapitalResponseWithInfo getCapitalWithInfo(GetCapitalRequest getCapitalRequest);
 }

@@ -3,10 +3,7 @@ package space.springbok.springaiintro.controllers;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import space.springbok.springaiintro.model.Answer;
-import space.springbok.springaiintro.model.GetCapitalRequest;
-import space.springbok.springaiintro.model.GetCapitalResponse;
-import space.springbok.springaiintro.model.Question;
+import space.springbok.springaiintro.model.*;
 import space.springbok.springaiintro.services.OpenAIService;
 
 /**
@@ -22,7 +19,7 @@ public class QuestionController {
     }
 
     @PostMapping("/capitalWithInfo")
-    public Answer getCapitalWithInfo(@RequestBody GetCapitalRequest getCapitalRequest) {
+    public GetCapitalResponseWithInfo getCapitalWithInfo(@RequestBody GetCapitalRequest getCapitalRequest) {
         return openAIService.getCapitalWithInfo(getCapitalRequest);
     }
 

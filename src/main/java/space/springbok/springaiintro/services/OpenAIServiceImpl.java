@@ -12,10 +12,7 @@ import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import space.springbok.springaiintro.model.Answer;
-import space.springbok.springaiintro.model.GetCapitalRequest;
-import space.springbok.springaiintro.model.GetCapitalResponse;
-import space.springbok.springaiintro.model.Question;
+import space.springbok.springaiintro.model.*;
 
 import java.util.Map;
 import java.util.Objects;
@@ -76,11 +73,16 @@ public class OpenAIServiceImpl implements OpenAIService {
     }
 
     @Override
-    public Answer getCapitalWithInfo(GetCapitalRequest getCapitalRequest) {
+    public GetCapitalResponseWithInfo getCapitalWithInfo(GetCapitalRequest getCapitalRequest) {
+
+        BeanOutputConverter<GetCapitalResponseWithInfo> converter = new BeanOutputConverter<>(GetCapitalResponseWithInfo.class);
+        String format = converter.getFormat();
+
         PromptTemplate promptTemplate = new PromptTemplate(getCapitalWithInfo);
-        Prompt prompt = promptTemplate.create(Map.of("stateOrCountry", getCapitalRequest.stateOrCountry()));
+        Prompt prompt = promptTemplate.create(Map.of("stateOrCountry", getCapitalRequest.stateOrCountry(),
+                "format", format));
         ChatResponse response = chatModel.call(prompt);
 
-        return new Answer(response.getResult().getOutput().getText());
+        return converter.convert(Objects.requireNonNull(response.getResult().getOutput().getText()));
     }
 }
