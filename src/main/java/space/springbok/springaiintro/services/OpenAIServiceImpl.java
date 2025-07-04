@@ -18,6 +18,7 @@ import space.springbok.springaiintro.model.GetCapitalResponse;
 import space.springbok.springaiintro.model.Question;
 
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * @author John Spangenberg
@@ -71,7 +72,7 @@ public class OpenAIServiceImpl implements OpenAIService {
         "format", format));
         ChatResponse response = chatModel.call(prompt);
 
-        return converter.convert(response.getResult().getOutput().getText());
+        return converter.convert(Objects.requireNonNull(response.getResult().getOutput().getText()));
     }
 
     @Override
